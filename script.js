@@ -3,29 +3,31 @@ let generatedCode = ''; // To store the generated code globally
 document.getElementById('generateCode').addEventListener('click', function() {
     generatedCode = generateCode();
     document.getElementById('codeDisplay').value = generatedCode;
-    this.textContent = 'Copy Code to Send';
-    this.id = 'copyCode'; // Change the button ID to handle the new functionality
+    document.getElementById('codeGenerator').replaceChild(createCopyButton(), this); // Replace with "Copy Code to Send" button
     document.getElementById('codeEntry').style.display = 'none'; // Hide the Enter Code field
+});
 
-    // Listen to the new button for copying functionality
-    document.getElementById('copyCode').addEventListener('click', function() {
+document.getElementById('startColors').addEventListener('click', function() {
+    // Use the generated code if available; otherwise, use the manually entered code
+    const codeToUse = generatedCode || document.getElementById('enterCode').value;
+    if (codeToUse) {
+        cycleColors(codeToUse);
+    } else {
+        alert('Please generate or enter a code first.');
+    }
+});
+
+function createCopyButton() {
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = 'Copy Code to Send';
+    copyBtn.addEventListener('click', function() {
         const fullMessage = `https://knottree.github.io/threeColors/\n\nCode to enter: ${generatedCode}`;
         navigator.clipboard.writeText(fullMessage).then(() => {
             alert('Code copied to clipboard. Ready to share via SMS!');
         });
     });
-});
-
-document.getElementById('startColors').addEventListener('click', function() {
-    if (generatedCode) { // If a code was generated, use it directly
-        cycleColors(generatedCode);
-    } else { // Otherwise, use the manually entered code
-        const enteredCode = document.getElementById('enterCode').value;
-        if (enteredCode) {
-            cycleColors(enteredCode);
-        }
-    }
-});
+    return copyBtn;
+}
 
 function generateCode() {
     const colorCodes = ['AB', 'CD', 'EF', 'GH', 'IJ'];
