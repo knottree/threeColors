@@ -1,48 +1,30 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+body {
     font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers items horizontally in the container */
+    justify-content: center; /* Centers items vertically in the container */
+    height: 100vh; /* Use the full height of the viewport */
+    margin: 0;
 }
 
-input, button {
-    font-size: 20px;
-    padding: 10px;
-    margin: 10px;
-    width: 300px; /* Adjust based on your preference */
-    display: block;
-    border: none;
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
-    cursor: pointer;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-}
-
-input {
-    cursor: text;
-}
-
-input#codeDisplay, input#enterCode {
-    text-align: center;
+#codeEntry, #codeGenerator, #colorDisplay {
+    margin: 10px; /* Adds some space around each element */
 }
 
 #colorDisplay {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    border-radius: 0; /* No rounding needed here */
+    width: 200px;
+    height: 200px;
+    border: 1px solid #000;
+    display: none; /* Initially hidden */
 }
 
-/* Add Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+button, input[type="text"] {
+    padding: 10px;
+    margin: 5px; /* Ensures some space around buttons and input */
+    font-size: 16px; /* Increases readability */
+}
+
+input[type="text"] {
+    width: calc(100% - 22px); /* Adjusts input width to fit content */
+}
