@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     let generatedCode = ''; // To store the generated code globally
 
-    const generateCodeBtn = document.getElementById('generateCode');
-    generateCodeBtn.addEventListener('click', function() {
+    document.getElementById('generateCode').addEventListener('click', function() {
         if (!generatedCode) { // Generate code only if it hasn't been generated yet
             generatedCode = generateCode();
-            document.getElementById('codeDisplay').value = generatedCode;
+            document.getElementById('enterCode').value = generatedCode; // Place generated code into the enterCode input
         }
         // Change button text and functionality to "Copy Code to Send"
         this.textContent = 'Copy Code to Send';
@@ -19,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('startColors').addEventListener('click', function() {
-        // Use the generated code if available; otherwise, use the manually entered code
-        const codeToUse = generatedCode || document.getElementById('enterCode').value;
+        // Directly use the code from the enterCode input
+        const codeToUse = document.getElementById('enterCode').value;
         if (codeToUse) {
             cycleColors(codeToUse);
         } else {
