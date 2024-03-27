@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('startColors').addEventListener('click', function() {
         // Directly use the code from the enterCode input
         const codeToUse = document.getElementById('enterCode').value;
-        if (codeToUse) {
+        if (codeToUse && isValidCode(codeToUse)) {
             cycleColors(codeToUse);
         } else {
-            alert('Please generate or enter a code first.');
+            alert('Invalid code. Please check the code and try again.');
         }
     });
 
@@ -50,7 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'IJ': 'violet'
         };
 
-        const colors = code.split('&').map(param => colorMap[param]);
+        const colors = code.split('&').map(param => colorMap[param] || null).filter(Boolean);
+
+        if (colors.length < 3) {
+            alert('Invalid code. Please check the code and try again.');
+            return;
+        }
 
         let i = 0;
         document.getElementById('colorDisplay').style.display = 'block';
@@ -59,5 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('colorDisplay').style.backgroundColor = colors[i % colors.length];
             i++;
         }, 1500);
+    }
+
+    function isValidCode(code) {
+        const validCodes = ['AB', 'CD', 'EF', 'GH', 'IJ'];
+        const enteredCodes = code.split('&');
+        return enteredCodes.length === 3 && enteredCodes.every(code => validCodes.includes(code));
     }
 });
