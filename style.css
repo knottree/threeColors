@@ -2,11 +2,36 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
 }
 
-#linkGenerator {
+input, button {
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px;
+    width: 300px; /* Adjust based on your preference */
+    display: block;
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    cursor: pointer;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+}
+
+input {
+    cursor: text;
+}
+
+input#codeDisplay, input#enterCode {
     text-align: center;
-    margin-top: 20px;
 }
 
 #colorDisplay {
@@ -16,8 +41,8 @@ body, html {
     top: 0;
     left: 0;
     display: none;
+    border-radius: 0; /* No rounding needed here */
 }
 
-input#linkDisplay {
-    margin-top: 10px;
-}
+/* Add Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
