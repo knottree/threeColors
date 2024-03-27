@@ -58,6 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(() => {
             document.getElementById('colorDisplay').style.backgroundColor = colors[i % colors.length];
             i++;
-        }, 1000);
+        }, 1500);
     }
 });
